@@ -61,7 +61,7 @@ const PROJECTS: Project[] = [
     id: "dpc-system",
     title: "DPC Management System",
     description:
-      "A management system for tracking and organizing business operations.",
+      "A management system for tracking and organizing business operations. abuavwduvdyv",
     image: "/images/dpc_system1.jpeg",
     gallery: [
       "/images/dpc_system1.jpeg",
@@ -80,12 +80,13 @@ const PROJECTS: Project[] = [
     id: "personal-portfolio",
     title: "Personal Portfolio",
     description:
-      "My personal portfolio showcasing my projects and skills.",
-    image: "/images/dpc_system1.jpeg",
+      "My personal portfolio showcasing my projects and skills. bsbabab babdubaud bahbdbu",
+    image: "/images/portfolio1.png",
     gallery: [
-      "/images/dpc_system1.jpeg",
-      "/images/dpc_system2.jpeg",
-      "/images/dpc_system3.png",
+      "/images/portfolio1.png",
+      "/images/portfolio2.png",
+      "/images/portfolio3.png",
+      "/images/portfolio4.png",
     ],
     categories: ["Websites"],
     tags: ["TS", "react js", "NEXT", "tailwind css"],
@@ -97,30 +98,18 @@ const PROJECTS: Project[] = [
 ]
 
 const FILTERS = ["All", "Websites", "Web Apps", "Other"]
+const PROJECTS_CAPTION = "A collection of websites and apps I've built with passion."
 
 const titleClip =
   "polygon(38px 0, calc(100% - 38px) 0, 100% 50%, calc(100% - 38px) 100%, 38px 100%, 0 50%)"
 
-function useMobileProjectReveal(index: number) {
+function useProjectReveal(index: number) {
   const ref = useRef<HTMLDivElement | null>(null)
-  const [isMobile, setIsMobile] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 1023px)")
-    const updateViewport = () => setIsMobile(mediaQuery.matches)
-
-    updateViewport()
-    mediaQuery.addEventListener("change", updateViewport)
-    return () => mediaQuery.removeEventListener("change", updateViewport)
-  }, [])
-
-  useEffect(() => {
     const element = ref.current
-    if (!isMobile || !element) {
-      setIsVisible(!isMobile)
-      return
-    }
+    if (!element) return
 
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
@@ -129,31 +118,29 @@ function useMobileProjectReveal(index: number) {
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [isMobile])
+  }, [])
 
   const offset = index % 2 === 0 ? "-18%" : "18%"
 
   return {
     ref,
-    style: isMobile
-      ? {
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? "translateX(0)" : `translateX(${offset}) scale(0.98)`,
-          transition: "opacity 0.65s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)",
-          willChange: "opacity, transform",
-        }
-      : undefined,
+    style: {
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? "translateX(0)" : `translateX(${offset}) scale(0.98)`,
+      transition: "opacity 0.65s ease, transform 0.75s cubic-bezier(0.22,1,0.36,1)",
+      willChange: "opacity, transform",
+    },
   }
 }
 
-function MobileProjectReveal({
+function ProjectReveal({
   index,
   children,
 }: {
   index: number
   children: React.ReactNode
 }) {
-  const { ref, style } = useMobileProjectReveal(index)
+  const { ref, style } = useProjectReveal(index)
 
   return (
     <div ref={ref} style={style}>
@@ -165,6 +152,47 @@ function MobileProjectReveal({
 export function ProjectsSection() {
   const [filter, setFilter] = useState("All")
   const [active, setActive] = useState<Project | null>(null)
+  const [typedCaption, setTypedCaption] = useState("")
+  const captionRef = useRef<HTMLParagraphElement | null>(null)
+
+  useEffect(() => {
+    const element = captionRef.current
+    if (!element) return
+
+    let timer: number | undefined
+    const clearTyping = () => {
+      if (timer !== undefined) window.clearInterval(timer)
+      timer = undefined
+    }
+    const startTyping = () => {
+      clearTyping()
+      let index = 0
+      setTypedCaption("")
+      timer = window.setInterval(() => {
+        index += 1
+        setTypedCaption(PROJECTS_CAPTION.slice(0, index))
+        if (index === PROJECTS_CAPTION.length) clearTyping()
+      }, 38)
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startTyping()
+        } else {
+          clearTyping()
+          setTypedCaption("")
+        }
+      },
+      { threshold: 0.35 },
+    )
+    observer.observe(element)
+
+    return () => {
+      observer.disconnect()
+      clearTyping()
+    }
+  }, [])
 
   const visible = useMemo(() => {
     if (filter === "All") return PROJECTS
@@ -252,8 +280,12 @@ export function ProjectsSection() {
             <h2 className="font-mono text-4xl font-black tracking-tight text-paper sm:text-6xl">
               My <span className="text-blood">Projects</span>
             </h2>
-            <p className="mt-3 text-pretty font-mono text-xs text-paper-dim sm:text-sm">
-              A collection of websites and apps I&apos;ve built with passion.
+            <p
+              ref={captionRef}
+              aria-label={PROJECTS_CAPTION}
+              className="mt-3 min-h-10 text-pretty font-mono text-xs text-paper-dim sm:min-h-5 sm:text-sm"
+            >
+              {typedCaption}
             </p>
           </div>
         </div>
@@ -292,19 +324,19 @@ export function ProjectsSection() {
             if (isLastSingle) {
               return (
                 <div key={project.id} className="lg:col-span-2 flex justify-center">
-                  <MobileProjectReveal index={i}>
+                  <ProjectReveal index={i}>
                     <div className="w-full max-w-[676px]">
                       <ProjectCard project={project} onView={setActive} />
                     </div>
-                  </MobileProjectReveal>
+                  </ProjectReveal>
                 </div>
               )
             }
 
             return (
-              <MobileProjectReveal key={project.id} index={i}>
+              <ProjectReveal key={project.id} index={i}>
                 <ProjectCard project={project} onView={setActive} />
-              </MobileProjectReveal>
+              </ProjectReveal>
             )
           })}
         </div>

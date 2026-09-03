@@ -281,15 +281,15 @@ export function ProjectModal({
                   href={project.live}
                   target="_blank"
                   rel="noreferrer"
-                  className="group/btn relative isolate flex flex-1 items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] font-mono text-sm font-semibold tracking-widest text-blood shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:shadow-[0_0_30px_-4px_var(--blood-bright)] sm:flex-none"
+                  className="mobile-cta-pulse mobile-cta-contact mobile-cta-preview group/btn relative isolate flex flex-1 items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] font-mono text-xs font-semibold tracking-widest text-blood drop-shadow-[0_0_18px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:drop-shadow-[0_0_30px_var(--blood-bright)] sm:flex-none sm:text-sm"
                   style={{ clipPath: btnClip }}
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/75 group-hover/btn:to-blood/25"
+                    className="mobile-cta-surface absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/75 group-hover/btn:to-blood/25"
                     style={{ clipPath: btnClip }}
                   />
-                  <span aria-hidden className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover/btn:translate-x-[430%]" />
+                  <span aria-hidden className="mobile-cta-shine absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover/btn:translate-x-[430%]" />
                   <span className="relative flex items-center justify-center gap-2 px-3 py-2 sm:px-6">
                     <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
                     PREVIEW
@@ -299,7 +299,7 @@ export function ProjectModal({
                   href={project.github}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex flex-1 sm:flex-none items-center justify-center gap-2 border border-white/15 bg-ink/60 px-3 sm:px-6 py-2 font-mono text-sm font-semibold tracking-widest text-paper transition-all duration-300 hover:border-paper/40"
+                  className="flex flex-1 sm:flex-none items-center justify-center gap-2 border border-white/15 bg-ink/60 px-3 sm:px-6 py-2 font-mono text-xs font-semibold tracking-widest text-paper transition-all duration-300 hover:border-paper/40 sm:text-sm"
                   style={{ clipPath: btnClip }}
                 >
                   <GithubIcon className="h-4 w-4 text-white" />

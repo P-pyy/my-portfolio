@@ -73,6 +73,7 @@ const CATEGORIES: Category[] = [
 
 const titleClip =
   "polygon(38px 0, calc(100% - 38px) 0, 100% 50%, calc(100% - 38px) 100%, 38px 100%, 0 50%)"
+const SKILLS_CAPTION = "The tools and technologies I use to bring ideas to life."
 
 /* angular frame: cut top-left + bottom-right corners */
 const panelClip =
@@ -261,6 +262,48 @@ function CategoryPanel({ category, categoryIndex }: { category: Category; catego
 }
 
 export function SkillsSection() {
+  const [typedCaption, setTypedCaption] = useState("")
+  const captionRef = useRef<HTMLParagraphElement | null>(null)
+
+  useEffect(() => {
+    const element = captionRef.current
+    if (!element) return
+
+    let timer: number | undefined
+    const clearTyping = () => {
+      if (timer !== undefined) window.clearInterval(timer)
+      timer = undefined
+    }
+    const startTyping = () => {
+      clearTyping()
+      let index = 0
+      setTypedCaption("")
+      timer = window.setInterval(() => {
+        index += 1
+        setTypedCaption(SKILLS_CAPTION.slice(0, index))
+        if (index === SKILLS_CAPTION.length) clearTyping()
+      }, 38)
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startTyping()
+        } else {
+          clearTyping()
+          setTypedCaption("")
+        }
+      },
+      { threshold: 0.35 },
+    )
+    observer.observe(element)
+
+    return () => {
+      observer.disconnect()
+      clearTyping()
+    }
+  }, [])
+
   return (
     <section id="skills" className="relative w-full overflow-hidden pb-20 pt-24">
       {/* ambient red glow */}
@@ -310,8 +353,12 @@ export function SkillsSection() {
             <h2 className="font-mono text-4xl font-black tracking-tight text-paper sm:text-6xl">
               My <span className="text-blood">Skills</span>
             </h2>
-            <p className="mt-3 text-pretty font-mono text-xs text-paper-dim sm:text-sm">
-              The tools and technologies I use to bring ideas to life.
+            <p
+              ref={captionRef}
+              aria-label={SKILLS_CAPTION}
+              className="mt-3 min-h-10 text-pretty font-mono text-xs text-paper-dim sm:min-h-5 sm:text-sm"
+            >
+              {typedCaption}
             </p>
           </div>
         </div>

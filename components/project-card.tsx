@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { ExternalLink } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 
 export type Project = {
   id: string
@@ -29,6 +30,25 @@ export function ProjectCard({
   project: Project
   onView: (project: Project) => void
 }) {
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null)
+  const [descriptionVisible, setDescriptionVisible] = useState(false)
+  const projectNumber = Math.max(0, Number(project.index) - 1)
+  const projectPulseDelay = `${projectNumber * 0.7}s`
+  const projectPulseDuration = `${4.3 + projectNumber * 0.6}s`
+
+  useEffect(() => {
+    const element = descriptionRef.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setDescriptionVisible(entry.isIntersecting),
+      { threshold: 0.2 },
+    )
+    observer.observe(element)
+
+    return () => observer.disconnect()
+  }, [])
+
   const TAG_ICONS: Record<string, string> = {
     HTML: "/images/html.svg",
     CSS: "/images/css.svg",
@@ -117,7 +137,15 @@ export function ProjectCard({
             >
               {project.title}
             </h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-paper-dim">
+            <p
+              ref={descriptionRef}
+              className={`mt-3 flex-1 text-sm leading-relaxed text-paper-dim ${
+                descriptionVisible
+                  ? "project-description-fade"
+                  : "translate-y-2 opacity-0"
+              }`}
+              style={{ animationDelay: "160ms" }}
+            >
               {project.description}
             </p>
 
@@ -190,15 +218,19 @@ export function ProjectCard({
         <button
           type="button"
           onClick={() => onView(project)}
-          className="group/btn relative isolate mt-5 flex w-full items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] font-mono text-sm font-semibold tracking-[0.3em] text-blood shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:shadow-[0_0_30px_-4px_var(--blood-bright)]"
-          style={{ clipPath: btnClip }}
+          className="mobile-cta-pulse mobile-cta-contact mobile-cta-view group/btn relative isolate mt-5 flex w-full items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] font-mono text-sm font-semibold tracking-[0.3em] text-blood drop-shadow-[0_0_18px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:drop-shadow-[0_0_30px_var(--blood-bright)]"
+          style={{
+            clipPath: btnClip,
+            "--mobile-cta-delay": projectPulseDelay,
+            "--mobile-cta-duration": projectPulseDuration,
+          } as React.CSSProperties}
         >
           <span
             aria-hidden
-            className="absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/75 group-hover/btn:to-blood/25"
+            className="mobile-cta-surface absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/75 group-hover/btn:to-blood/25"
             style={{ clipPath: btnClip }}
           />
-          <span aria-hidden className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover/btn:translate-x-[430%]" />
+          <span aria-hidden className="mobile-cta-shine absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover/btn:translate-x-[430%]" />
           <span className="relative flex items-center justify-center gap-2 py-3">
             VIEW PROJECT
             <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />

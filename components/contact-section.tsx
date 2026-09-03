@@ -341,21 +341,21 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group/btn relative isolate mt-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-paper shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_-4px_var(--blood-bright)] disabled:cursor-not-allowed disabled:opacity-70"
+                  className="mobile-cta-pulse mobile-cta-transmit group/btn relative isolate mt-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-paper drop-shadow-[0_0_18px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:drop-shadow-[0_0_30px_var(--blood-bright)] disabled:cursor-not-allowed disabled:opacity-70"
                   style={{ clipPath: btnClip }}
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-0 bg-gradient-to-r from-blood via-blood-bright to-blood shadow-[0_0_30px_-8px_var(--blood)] transition-all duration-300 group-hover/btn:shadow-[0_0_40px_-6px_var(--blood)]"
+                    className="absolute inset-[2px] bg-gradient-to-r from-blood via-blood-bright to-blood transition-all duration-300"
                     style={{ clipPath: btnClip }}
                   />
                   <span
-                    className="relative m-[2px] flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 px-4 py-3 font-mono text-xs font-bold tracking-[0.15em] text-paper backdrop-blur-sm transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/85 group-hover/btn:to-blood/15 sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
+                    className="mobile-cta-surface relative m-[2px] flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 px-4 py-3 font-mono text-xs font-bold tracking-[0.15em] text-paper backdrop-blur-sm transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/85 group-hover/btn:to-blood/15 sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
                     style={{ clipPath: btnClip }}
                   >
                     <span
                       aria-hidden
-                      className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover/btn:translate-x-[100%]"
+                      className="mobile-cta-shine pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover/btn:translate-x-[100%]"
                     />
                     {loading ? "TRANSMITTING..." : "TRANSMIT MESSAGE"}
                     <ChevronsRight className="transmit-chevron h-4 w-4 sm:h-5 sm:w-5" />

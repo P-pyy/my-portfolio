@@ -280,6 +280,73 @@
   0%, 100% { background-position: 0% 0%; }
   50% { background-position: 100% 100%; }
 }
+@keyframes mobile-cta-pulse {
+  0%, 52%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 18px var(--blood));
+  }
+  64%, 84% {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 0 30px var(--blood-bright));
+  }
+}
+@keyframes mobile-cta-surface {
+  0%, 52%, 100% {
+    background-position: 0% 0%;
+  }
+  64%, 84% {
+    background-position: 100% 100%;
+  }
+}
+@keyframes mobile-cta-shine {
+  0%, 52% { transform: translateX(0); }
+  72%, 100% { transform: translateX(430%); }
+}
+@keyframes mobile-cta-contact {
+  0%, 52%, 100% { color: var(--blood); }
+  64%, 84% { color: var(--paper); }
+}
+@keyframes project-description-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.project-description-fade {
+  animation: project-description-fade 0.8s ease both;
+}
+
+@media (max-width: 639px) {
+  .mobile-cta-pulse { animation: mobile-cta-pulse 4.8s ease-in-out infinite; }
+  .mobile-cta-surface { animation: mobile-cta-surface 4.8s ease-in-out infinite; }
+  .mobile-cta-shine { animation: mobile-cta-shine 4.8s ease-in-out infinite; }
+  .mobile-cta-contact { animation: mobile-cta-contact 4.8s ease-in-out infinite; }
+  .mobile-cta-resume { --mobile-cta-delay: 0s; }
+  .mobile-cta-contact-hero { --mobile-cta-delay: 0.8s; }
+  .mobile-cta-view { --mobile-cta-delay: 1.6s; }
+  .mobile-cta-preview { --mobile-cta-delay: 2.4s; }
+  .mobile-cta-transmit { --mobile-cta-delay: 3.2s; }
+  .mobile-cta-pulse,
+  .mobile-cta-contact,
+  .mobile-cta-pulse .mobile-cta-surface,
+  .mobile-cta-pulse .mobile-cta-shine {
+    animation-delay: var(--mobile-cta-delay, 0s);
+    animation-duration: var(--mobile-cta-duration, 4.8s);
+  }
+}
+
+@media (min-width: 640px) {
+  .mobile-cta-pulse { animation: mobile-cta-pulse 4.8s ease-in-out infinite; }
+  .mobile-cta-surface { animation: mobile-cta-surface 4.8s ease-in-out infinite; }
+  .mobile-cta-shine { animation: mobile-cta-shine 4.8s ease-in-out infinite; }
+  .mobile-cta-contact { animation: mobile-cta-contact 4.8s ease-in-out infinite; }
+  .mobile-cta-pulse,
+  .mobile-cta-contact,
+  .mobile-cta-pulse .mobile-cta-surface,
+  .mobile-cta-pulse .mobile-cta-shine {
+    animation-delay: var(--mobile-cta-delay, 0s);
+    animation-duration: var(--mobile-cta-duration, 4.8s);
+  }
+}
 
 .hero-rise { animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .hero-marquee { animation: hero-marquee 36s linear infinite; }
