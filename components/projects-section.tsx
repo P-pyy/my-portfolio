@@ -61,7 +61,7 @@ const PROJECTS: Project[] = [
     id: "dpc-system",
     title: "DPC Management System",
     description:
-      "A management system for tracking and organizing business operations. abuavwduvdyv",
+      "A management system for tracking and organizing daily business operations.",
     image: "/images/dpc_system1.jpeg",
     gallery: [
       "/images/dpc_system1.jpeg",
@@ -80,7 +80,7 @@ const PROJECTS: Project[] = [
     id: "personal-portfolio",
     title: "Personal Portfolio",
     description:
-      "My personal portfolio showcasing my projects and skills. bsbabab babdubaud bahbdbu",
+      "My personal portfolio showcasing my creative projects and technical skills.",
     image: "/images/portfolio1.png",
     gallery: [
       "/images/portfolio1.png",
