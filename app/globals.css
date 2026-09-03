@@ -218,6 +218,10 @@
   60% { transform: translateY(10px); opacity: 0; }
   100% { opacity: 0; }
 }
+@keyframes hero-scroll-chevron {
+  0%, 100% { transform: translateY(-2px); opacity: 0.35; }
+  50% { transform: translateY(4px); opacity: 1; }
+}
 @keyframes hero-rise {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
@@ -264,6 +268,7 @@
 .hero-rise { animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .hero-marquee { animation: hero-marquee 36s linear infinite; }
 .hero-flicker { animation: hero-flicker 7s linear infinite; }
+.hero-scroll-chevron { animation: hero-scroll-chevron 1.15s ease-in-out infinite; }
 
 /* angular HUD clip for the portrait panel */
 .hud-clip {

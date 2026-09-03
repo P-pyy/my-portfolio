@@ -140,7 +140,7 @@ export function ProjectsSection() {
             <span className="h-0.5 w-8 bg-blood/60" />
             <span className="h-0.5 w-4 bg-blood/40" />
           </span>
-          <span className="font-mono text-xs tracking-[0.35em] text-blood">
+          <span className="whitespace-nowrap font-mono text-[10px] tracking-[0.18em] text-blood sm:text-xs sm:tracking-[0.35em]">
             02 / SELECTED WORK
           </span>
           <span className="flex items-center gap-1">

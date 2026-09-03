@@ -54,7 +54,7 @@ export function ProfilePortrait({ tiltX, tiltY }: Props) {
           {/* status chip, bottom */}
           <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-blood/40 bg-ink/75 px-3 py-1.5">
             <span className="h-2 w-2 rounded-full bg-green-400 shadow-[0_0_8px_2px_rgba(74,222,128,0.7)]" />
-            <span className="font-mono text-[10px] font-semibold tracking-widest text-paper">
+            <span className="whitespace-nowrap font-mono text-[9px] font-semibold tracking-[0.16em] text-paper sm:text-[10px] sm:tracking-widest">
               AVAILABLE FOR WORK
             </span>
           </div>

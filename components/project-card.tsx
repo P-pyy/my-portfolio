@@ -19,6 +19,8 @@ export type Project = {
 const hexClip = "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)"
 const cardClip =
   "polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px)"
+const btnClip =
+  "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)"
 
 export function ProjectCard({
   project,
@@ -109,7 +111,7 @@ export function ProjectCard({
           {/* LEFT: title + description + tech */}
           <div className="flex flex-col">
             <h3
-              className={`font-mono text-2xl font-bold leading-tight text-paper ${
+              className={`font-mono text-xl font-bold leading-tight text-paper sm:text-2xl ${
                 project.id === "personal-portfolio" ? "whitespace-nowrap overflow-hidden" : ""
               }`}
             >
@@ -188,10 +190,19 @@ export function ProjectCard({
         <button
           type="button"
           onClick={() => onView(project)}
-          className="group/btn mt-5 flex w-full items-center justify-center gap-2 border border-blood/70 bg-blood/5 py-3 font-mono text-sm font-semibold tracking-[0.3em] text-blood transition-all duration-300 hover:bg-blood hover:text-paper hover:shadow-[0_0_24px_-6px_var(--blood)]"
+          className="group/btn relative isolate mt-5 flex w-full items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] font-mono text-sm font-semibold tracking-[0.3em] text-blood shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:shadow-[0_0_30px_-4px_var(--blood-bright)]"
+          style={{ clipPath: btnClip }}
         >
-          VIEW PROJECT
-          <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+          <span
+            aria-hidden
+            className="absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/75 group-hover/btn:to-blood/25"
+            style={{ clipPath: btnClip }}
+          />
+          <span aria-hidden className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover/btn:translate-x-[430%]" />
+          <span className="relative flex items-center justify-center gap-2 py-3">
+            VIEW PROJECT
+            <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />
+          </span>
         </button>
       </div>
     </article>
