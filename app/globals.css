@@ -203,6 +203,10 @@
 @keyframes hero-spin-reverse {
   to { transform: rotate(-360deg); }
 }
+@keyframes tech-stack-logo-spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
 @keyframes hero-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -221,6 +225,10 @@
 @keyframes hero-scroll-chevron {
   0%, 100% { transform: translateY(-2px); opacity: 0.35; }
   50% { transform: translateY(4px); opacity: 1; }
+}
+@keyframes transmit-chevron {
+  0%, 100% { transform: translateX(0); opacity: 0.65; }
+  50% { transform: translateX(4px); opacity: 1; }
 }
 @keyframes hero-rise {
   from { opacity: 0; transform: translateY(24px); }
@@ -264,11 +272,39 @@
   50% { opacity: 1; }
   100% { opacity: 0.2; }
 }
+@keyframes skills-progress-glow {
+  0%, 100% { box-shadow: 0 0 6px -3px var(--blood); }
+  50% { box-shadow: 0 0 14px -2px var(--blood); }
+}
+@keyframes contact-frame-gloss {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
 
 .hero-rise { animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .hero-marquee { animation: hero-marquee 36s linear infinite; }
 .hero-flicker { animation: hero-flicker 7s linear infinite; }
 .hero-scroll-chevron { animation: hero-scroll-chevron 1.15s ease-in-out infinite; }
+.transmit-chevron { animation: transmit-chevron 1.15s ease-in-out infinite; }
+.tech-stack-logo-stage { perspective: 500px; }
+.tech-stack-logo {
+  transform-style: preserve-3d;
+  animation: tech-stack-logo-spin 7s ease-in-out infinite;
+  will-change: transform;
+}
+.contact-panel-frame {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.18 27) 0%,
+    var(--blood-bright) 16%,
+    var(--blood) 38%,
+    oklch(0.38 0.15 27) 54%,
+    var(--blood-bright) 76%,
+    var(--blood) 100%
+  );
+  background-size: 200% 200%;
+  animation: contact-frame-gloss 8s ease-in-out infinite;
+}
 
 /* angular HUD clip for the portrait panel */
 .hud-clip {

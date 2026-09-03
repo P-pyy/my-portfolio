@@ -84,16 +84,15 @@ const tileClip =
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null)
   const [inView, setInView] = useState(false)
+  const [hasEntered, setHasEntered] = useState(false)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true)
-          observer.disconnect()
-        }
+        setInView(entry.isIntersecting)
+        if (entry.isIntersecting) setHasEntered(true)
       },
       { threshold: 0.15 },
     )
@@ -101,10 +100,20 @@ function useInView<T extends HTMLElement>() {
     return () => observer.disconnect()
   }, [])
 
-  return { ref, inView }
+  return { ref, inView, hasEntered }
 }
 
-function SkillTile({ skill, delay, inView }: { skill: Skill; delay: number; inView: boolean }) {
+function SkillTile({
+  skill,
+  delay,
+  rotationDelay,
+  inView,
+}: {
+  skill: Skill
+  delay: number
+  rotationDelay: number
+  inView: boolean
+}) {
   return (
     <div
       className="group/tile relative transition-transform duration-300 hover:-translate-y-1"
@@ -129,26 +138,59 @@ function SkillTile({ skill, delay, inView }: { skill: Skill; delay: number; inVi
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-0 h-full translate-y-[-100%] bg-gradient-to-b from-transparent via-blood/12 to-transparent transition-transform duration-700 group-hover/tile:translate-y-[100%]"
         />
-        <div className="relative h-8 w-8 transition-transform duration-300 group-hover/tile:scale-110">
-          <Image src={skill.icon || "/placeholder.svg"} alt={skill.name} fill className="object-contain" />
+        <div className="tech-stack-logo-stage relative h-8 w-8 transition-transform duration-300 group-hover/tile:scale-110">
+          <Image
+            src={skill.icon || "/placeholder.svg"}
+            alt={skill.name}
+            fill
+            className="tech-stack-logo object-contain"
+            style={{ animationDelay: `-${rotationDelay}s` }}
+          />
         </div>
         <span className="font-mono text-[12px] font-bold text-paper">{skill.name}</span>
-        <span className="font-mono text-[9px] font-semibold tracking-[0.15em] text-blood">{skill.label}</span>
+        <span className="text-center font-mono text-[9px] font-semibold tracking-[0.15em] text-blood">{skill.label}</span>
       </div>
     </div>
   )
 }
 
-function CategoryPanel({ category }: { category: Category }) {
-  const { ref, inView } = useInView<HTMLDivElement>()
+function CategoryPanel({ category, categoryIndex }: { category: Category; categoryIndex: number }) {
+  const { ref, inView, hasEntered } = useInView<HTMLDivElement>()
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    if (!inView) {
+      setProgress(0)
+      return
+    }
+
+    const duration = 2800
+    const startTime = performance.now()
+    let frameId = 0
+
+    const animateProgress = (now: number) => {
+      const elapsed = Math.min((now - startTime) / duration, 1)
+      const eased = 1 - Math.pow(1 - elapsed, 3)
+      setProgress(Math.round(eased * 100))
+
+      if (elapsed < 1) {
+        frameId = requestAnimationFrame(animateProgress)
+      }
+    }
+
+    setProgress(0)
+    frameId = requestAnimationFrame(animateProgress)
+
+    return () => cancelAnimationFrame(frameId)
+  }, [inView])
 
   return (
     <div
       ref={ref}
       className="group relative"
       style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(28px)",
+        opacity: hasEntered ? 1 : 0,
+        transform: hasEntered ? "translateY(0)" : "translateY(28px)",
         transition: "opacity 0.6s ease, transform 0.6s cubic-bezier(0.22,1,0.36,1)",
       }}
     >
@@ -190,18 +232,26 @@ function CategoryPanel({ category }: { category: Category }) {
             <div className="mt-auto flex items-center gap-3 pt-2">
               <div className="relative h-1.5 flex-1 overflow-hidden bg-blood/15">
                 <span
-                  className="absolute inset-y-0 left-0 bg-blood"
-                  style={{ width: inView ? "100%" : "0%", transition: "width 1.1s cubic-bezier(0.22,1,0.36,1) 0.3s" }}
+                  className={`absolute inset-y-0 left-0 bg-blood shadow-[0_0_10px_-2px_var(--blood)] ${
+                    progress < 100 ? "animate-[skills-progress-glow_1.8s_ease-in-out_infinite]" : ""
+                  }`}
+                  style={{ width: `${progress}%` }}
                 />
               </div>
-              <span className="font-mono text-sm font-bold text-blood">100%</span>
+              <span className="font-mono text-sm font-bold text-blood">{progress}%</span>
             </div>
           </div>
 
           {/* right: skill grid */}
           <div className="grid flex-1 grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {category.skills.map((skill, i) => (
-              <SkillTile key={skill.name} skill={skill} delay={i * 60} inView={inView} />
+              <SkillTile
+                key={skill.name}
+                skill={skill}
+                delay={i * 60}
+                rotationDelay={(categoryIndex * 8 + i) * 0.75}
+                inView={inView}
+              />
             ))}
           </div>
         </div>
@@ -268,8 +318,8 @@ export function SkillsSection() {
 
         {/* category panels */}
         <div className="mt-12 flex flex-col gap-6">
-          {CATEGORIES.map((category) => (
-            <CategoryPanel key={category.id} category={category} />
+          {CATEGORIES.map((category, categoryIndex) => (
+            <CategoryPanel key={category.id} category={category} categoryIndex={categoryIndex} />
           ))}
         </div>
       </div>
