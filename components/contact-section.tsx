@@ -73,11 +73,11 @@ function HudField({
         style={{ clipPath: fieldClip }}
       />
       <div
-        className="relative m-[1.5px] flex items-stretch gap-4 bg-ink p-4"
+        className="relative m-[1.5px] flex items-stretch gap-2 bg-ink p-2 sm:gap-4 sm:p-4"
         style={{ clipPath: fieldClip }}
       >
         <div
-          className={`relative mt-1 flex h-11 w-11 shrink-0 items-center justify-center self-start border text-blood transition-all duration-300 ${
+          className={`relative mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center self-start border text-blood transition-all duration-300 sm:mt-1 sm:h-11 sm:w-11 ${
             focused ? "border-blood shadow-[0_0_14px_-4px_var(--blood)]" : "border-blood/60"
           }`}
         >
@@ -86,7 +86,7 @@ function HudField({
           <span aria-hidden className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r border-blood/70" />
         </div>
         <div className="flex-1">
-          <div className="mb-1 flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.2em] text-blood">
+          <div className="mb-0.5 flex items-center gap-1 font-mono text-[9px] font-bold tracking-[0.1em] text-blood sm:mb-1 sm:gap-2 sm:text-[11px] sm:tracking-[0.2em]">
             {label}
             <span className="h-1 w-1 rounded-full bg-blood" />
           </div>
@@ -171,7 +171,7 @@ export function ContactSection() {
   }
 
   const inputClass =
-    "w-full bg-transparent font-mono text-base text-paper placeholder:text-paper-faint focus:outline-none"
+    "w-full bg-transparent font-mono text-xs text-paper placeholder:text-paper-faint focus:outline-none sm:text-base"
 
   return (
     <section id="contact" className="relative w-full overflow-hidden pb-20 pt-24">
@@ -239,16 +239,13 @@ export function ContactSection() {
             <div className="mb-10 flex flex-col items-center pt-10 text-center sm:pt-6">
               <div className="mb-3 flex items-center gap-3">
                 <span className="h-px w-10 bg-blood/60" />
-                <span className="font-mono text-[11px] tracking-[0.35em] text-blood">04 / TRANSMISSION</span>
+                <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.35em] text-blood">04 / TRANSMISSION</span>
                 <span className="h-px w-10 bg-blood/60" />
               </div>
               <span className="font-mono text-xs tracking-[0.4em] text-paper-dim">COMMUNICATION SYSTEM</span>
-              <h2 className="mt-2 font-mono text-5xl font-black tracking-tight text-paper sm:text-7xl">
+              <h2 className="mt-2 whitespace-nowrap font-mono text-4xl font-black tracking-tight text-paper sm:text-7xl">
                 CONTACT <span className="text-blood">ME</span>
               </h2>
-              <p className="mt-3 font-mono text-sm tracking-wide text-paper-dim">
-                Let&apos;s work together or just say hi
-              </p>
             </div>
 
             {sent ? (
@@ -267,7 +264,7 @@ export function ContactSection() {
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <HudField
-                  icon={<User className="h-5 w-5" />}
+                  icon={<User className="h-4 w-4 sm:h-5 sm:w-5" />}
                   label="IDENTIFICATION"
                   focused={focusedField === "name"}
                   invalid={fieldErrors.name}
@@ -291,7 +288,7 @@ export function ContactSection() {
                 </HudField>
 
                 <HudField
-                  icon={<Mail className="h-5 w-5" />}
+                  icon={<Mail className="h-4 w-4 sm:h-5 sm:w-5" />}
                   label="COMMUNICATION CHANNEL"
                   focused={focusedField === "email"}
                   invalid={fieldErrors.email}
@@ -315,7 +312,7 @@ export function ContactSection() {
                 </HudField>
 
                 <HudField
-                  icon={<MessageSquare className="h-5 w-5" />}
+                  icon={<MessageSquare className="h-4 w-4 sm:h-5 sm:w-5" />}
                   label="TRANSMISSION DATA"
                   focused={focusedField === "message"}
                   invalid={fieldErrors.message}
@@ -352,7 +349,7 @@ export function ContactSection() {
                     style={{ clipPath: btnClip }}
                   />
                   <span
-                    className="relative m-[2px] flex items-center justify-center gap-3 overflow-hidden bg-blood px-6 py-4 font-mono text-base font-bold tracking-[0.15em] text-paper transition-colors duration-300 group-hover/btn:bg-blood-bright"
+                    className="relative m-[2px] flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap bg-blood px-4 py-3 font-mono text-xs font-bold tracking-[0.15em] text-paper transition-colors duration-300 group-hover/btn:bg-blood-bright sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
                     style={{ clipPath: btnClip }}
                   >
                     <span
@@ -360,7 +357,7 @@ export function ContactSection() {
                       className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover/btn:translate-x-[100%]"
                     />
                     {loading ? "TRANSMITTING..." : "TRANSMIT MESSAGE"}
-                    <ChevronsRight className="h-5 w-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                    <ChevronsRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 sm:h-5 sm:w-5" />
                   </span>
                 </button>
               </form>

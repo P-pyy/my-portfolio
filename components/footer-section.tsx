@@ -15,7 +15,7 @@ export function FooterSection() {
 
       <div className="relative mx-auto flex max-w-[1400px] flex-col items-center gap-2 px-6 py-10 text-center">
         {/* HUD status line */}
-        <p aria-hidden className="mb-1 font-mono text-[10px] tracking-[0.4em] text-blood/60">
+        <p aria-hidden className="mb-1 whitespace-nowrap font-mono text-[10px] tracking-[0.4em] text-blood/60">
           [ SYS.END // CONNECTION STABLE ]
         </p>
         <p className="font-mono text-sm text-paper">
