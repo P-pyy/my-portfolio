@@ -1,6 +1,6 @@
 "use client"
 
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { ProjectCard, type Project } from "@/components/project-card"
 import { ProjectModal } from "@/components/project-modal"
 import { HudChrome } from "@/components/hud-chrome"
@@ -100,6 +100,67 @@ const FILTERS = ["All", "Websites", "Web Apps", "Other"]
 
 const titleClip =
   "polygon(38px 0, calc(100% - 38px) 0, 100% 50%, calc(100% - 38px) 100%, 38px 100%, 0 50%)"
+
+function useMobileProjectReveal(index: number) {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 1023px)")
+    const updateViewport = () => setIsMobile(mediaQuery.matches)
+
+    updateViewport()
+    mediaQuery.addEventListener("change", updateViewport)
+    return () => mediaQuery.removeEventListener("change", updateViewport)
+  }, [])
+
+  useEffect(() => {
+    const element = ref.current
+    if (!isMobile || !element) {
+      setIsVisible(!isMobile)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: "-24% 0px -24% 0px", threshold: 0.01 },
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [isMobile])
+
+  const offset = index % 2 === 0 ? "-18%" : "18%"
+
+  return {
+    ref,
+    style: isMobile
+      ? {
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? "translateX(0)" : `translateX(${offset}) scale(0.98)`,
+          transition: "opacity 0.65s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1)",
+          willChange: "opacity, transform",
+        }
+      : undefined,
+  }
+}
+
+function MobileProjectReveal({
+  index,
+  children,
+}: {
+  index: number
+  children: React.ReactNode
+}) {
+  const { ref, style } = useMobileProjectReveal(index)
+
+  return (
+    <div ref={ref} style={style}>
+      {children}
+    </div>
+  )
+}
 
 export function ProjectsSection() {
   const [filter, setFilter] = useState("All")
@@ -231,14 +292,20 @@ export function ProjectsSection() {
             if (isLastSingle) {
               return (
                 <div key={project.id} className="lg:col-span-2 flex justify-center">
-                  <div className="w-full max-w-[676px]">
-                    <ProjectCard project={project} onView={setActive} />
-                  </div>
+                  <MobileProjectReveal index={i}>
+                    <div className="w-full max-w-[676px]">
+                      <ProjectCard project={project} onView={setActive} />
+                    </div>
+                  </MobileProjectReveal>
                 </div>
               )
             }
 
-            return <ProjectCard key={project.id} project={project} onView={setActive} />
+            return (
+              <MobileProjectReveal key={project.id} index={i}>
+                <ProjectCard project={project} onView={setActive} />
+              </MobileProjectReveal>
+            )
           })}
         </div>
 

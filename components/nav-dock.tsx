@@ -26,6 +26,8 @@ function goTo(id: string) {
 
 export function NavDock() {
   const [active, setActive] = useState("home")
+  const [isCompact, setIsCompact] = useState(false)
+  const [isRailExpanded, setIsRailExpanded] = useState(true)
 
   // track the section currently in view
   useEffect(() => {
@@ -53,34 +55,74 @@ export function NavDock() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  useEffect(() => {
+    const updateCompactState = () => {
+      setIsCompact(window.innerWidth < 1024 && active !== "home")
+    }
+
+    updateCompactState()
+    window.addEventListener("scroll", updateCompactState, { passive: true })
+    window.addEventListener("resize", updateCompactState)
+    return () => {
+      window.removeEventListener("scroll", updateCompactState)
+      window.removeEventListener("resize", updateCompactState)
+    }
+  }, [active])
+
+  useEffect(() => {
+    setIsRailExpanded(!isCompact)
+  }, [isCompact])
+
+  function handleNavClick(id: string) {
+    if (isCompact && !isRailExpanded) {
+      setIsRailExpanded(true)
+      return
+    }
+    goTo(id)
+    if (isCompact) setIsRailExpanded(false)
+  }
+
   return (
     <nav
       aria-label="Primary"
-      className="fixed left-1/2 top-4 z-50 -translate-x-1/2 px-3"
+      className={`fixed z-50 transition-[top,left,right,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:left-1/2 lg:right-auto lg:top-4 lg:-translate-x-1/2 lg:-translate-y-0 lg:px-3 ${
+        isCompact
+          ? "left-auto top-1/2 -translate-x-0 -translate-y-1/2 px-0"
+          : "left-1/2 right-auto top-0 -translate-x-1/2 -translate-y-0 px-3"
+      }`}
+      style={isCompact ? { right: "env(safe-area-inset-right)" } : undefined}
     >
       <div className="relative">
         {/* side index labels */}
-        <span className="pointer-events-none absolute -left-7 top-1/2 hidden -translate-y-1/2 font-mono text-[11px] tracking-widest text-paper-dim md:block">
+        <span className={`pointer-events-none absolute -left-7 top-1/2 hidden -translate-y-1/2 font-mono text-[11px] tracking-widest text-paper-dim md:block ${isCompact ? "md:hidden" : ""}`}>
           01
         </span>
-        <span className="pointer-events-none absolute -right-7 top-1/2 hidden -translate-y-1/2 font-mono text-[11px] tracking-widest text-paper-dim md:block">
+        <span className={`pointer-events-none absolute -right-7 top-1/2 hidden -translate-y-1/2 font-mono text-[11px] tracking-widest text-paper-dim md:block ${isCompact ? "md:hidden" : ""}`}>
           04
         </span>
 
         {/* glowing frame border */}
         <div
           aria-hidden
-          className="absolute inset-0 bg-gradient-to-b from-blood via-blood/70 to-blood/90 shadow-[0_0_30px_-6px_var(--blood)]"
+          className={`absolute inset-0 bg-gradient-to-b from-blood via-blood/70 to-blood/90 shadow-[0_0_30px_-6px_var(--blood)] ${
+            isCompact ? "hidden lg:block" : ""
+          }`}
           style={{ clipPath: frameClip }}
         />
 
         {/* inner surface */}
         <div
-          className="relative m-[2px] bg-ink px-3 pb-2.5 pt-5"
-          style={{ clipPath: frameClip }}
+          className={`relative bg-ink lg:m-[2px] lg:px-3 lg:pb-2.5 lg:pt-5 ${
+            isCompact ? "m-0 bg-transparent p-0" : "m-[2px] px-3 pb-2.5 pt-5"
+          }`}
+          style={{ clipPath: isCompact ? "none" : frameClip }}
         >
           {/* top readout row */}
-          <div className="pointer-events-none absolute inset-x-4 top-1.5 flex items-center justify-between">
+          <div
+            className={`pointer-events-none absolute inset-x-4 top-1.5 items-center justify-between ${
+              isCompact ? "hidden lg:flex" : "flex"
+            }`}
+          >
             <span className="font-mono text-[9px] tracking-[0.3em] text-blood/80">
               NAV.SYSTEM
             </span>
@@ -96,20 +138,33 @@ export function NavDock() {
           </div>
 
           {/* icon cells */}
-          <ul className="flex items-center gap-2">
+          <ul
+            className={`flex items-center lg:flex-row lg:gap-2 ${
+              isCompact ? "flex-col gap-1" : "flex-row gap-2"
+            }`}
+          >
             {items.map(({ id, label, icon: Icon }) => {
               const isActive = active === id
               const isHome = id === "home"
 
               if (isHome) {
                 return (
-                  <li key={id}>
+                  <li
+                    key={id}
+                    className={`transition-all duration-300 lg:max-h-none lg:opacity-100 lg:overflow-visible ${
+                      isCompact && !isRailExpanded && !isActive
+                        ? "pointer-events-none max-h-0 overflow-hidden opacity-0"
+                        : "max-h-14 opacity-100"
+                    }`}
+                  >
                     <button
                       type="button"
-                      onClick={() => goTo(id)}
+                      onClick={() => handleNavClick(id)}
                       aria-label={label}
                       aria-current={isActive ? "page" : undefined}
-                      className="group relative flex h-14 w-14 items-center justify-center"
+                      className={`group relative flex items-center justify-center lg:h-14 lg:w-14 ${
+                        isCompact ? "h-11 w-11" : "h-14 w-14"
+                      } ${isCompact ? "bg-ink/45 backdrop-blur-md" : ""}`}
                     >
                       {/* radar rings */}
                       <span
@@ -142,13 +197,22 @@ export function NavDock() {
               }
 
               return (
-                <li key={id}>
+                  <li
+                    key={id}
+                    className={`transition-all duration-300 lg:max-h-none lg:opacity-100 lg:overflow-visible ${
+                      isCompact && !isRailExpanded && !isActive
+                        ? "pointer-events-none max-h-0 overflow-hidden opacity-0"
+                        : "max-h-12 opacity-100"
+                    }`}
+                  >
                   <button
                     type="button"
-                    onClick={() => goTo(id)}
+                    onClick={() => handleNavClick(id)}
                     aria-label={label}
                     aria-current={isActive ? "page" : undefined}
-                    className="group relative flex h-12 w-14 items-center justify-center transition-transform duration-200"
+                    className={`group relative flex items-center justify-center transition-transform duration-200 lg:h-12 lg:w-14 ${
+                      isCompact ? "h-10 w-11" : "h-12 w-14"
+                    }`}
                   >
                     {/* cell frame */}
                     <span
@@ -158,7 +222,10 @@ export function NavDock() {
                           ? "border-blood bg-blood/15 shadow-[0_0_16px_-4px_var(--blood)]"
                           : "border-blood/30 bg-blood/[0.04] group-hover:border-blood/60"
                       }`}
-                      style={{ clipPath: cellClip }}
+                      style={{
+                        clipPath: cellClip,
+                        ...(isCompact ? { backdropFilter: "blur(10px)" } : {}),
+                      }}
                     />
                     {/* bottom tick marks */}
                     <span
@@ -179,7 +246,11 @@ export function NavDock() {
                           : "text-paper group-hover:text-paper"
                       }`}
                     />
-                    <span className="pointer-events-none absolute -bottom-7 whitespace-nowrap font-mono text-[10px] tracking-widest text-paper opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    <span
+                      className={`pointer-events-none absolute -bottom-7 whitespace-nowrap font-mono text-[10px] tracking-widest text-paper opacity-0 transition-opacity duration-200 group-hover:opacity-100 ${
+                        isCompact ? "hidden" : ""
+                      }`}
+                    >
                       {label.toUpperCase()}
                     </span>
                   </button>

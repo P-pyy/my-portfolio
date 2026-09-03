@@ -204,7 +204,7 @@ export function ContactSection() {
           {/* glowing comm-panel frame */}
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-br from-blood via-blood/60 to-blood opacity-80 shadow-[0_0_60px_-16px_var(--blood)] transition-opacity duration-500 group-hover:opacity-100"
+            className="contact-panel-frame absolute inset-0 opacity-80 shadow-[0_0_60px_-16px_var(--blood)] transition-opacity duration-500 group-hover:opacity-100"
             style={{ clipPath: panelClip }}
           />
           <div
@@ -283,7 +283,7 @@ export function ContactSection() {
                     placeholder="Your Name"
                     aria-labelledby="contact-name-label"
                     aria-invalid={fieldErrors.name}
-                    className={inputClass}
+                    className={`${inputClass} relative -top-1 sm:-top-1.5`}
                   />
                 </HudField>
 
@@ -307,7 +307,7 @@ export function ContactSection() {
                     placeholder="Your Email"
                     aria-labelledby="contact-email-label"
                     aria-invalid={fieldErrors.email}
-                    className={inputClass}
+                    className={`${inputClass} relative -top-1 sm:-top-1.5`}
                   />
                 </HudField>
 
@@ -341,15 +341,16 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group/btn relative mt-2 disabled:cursor-not-allowed disabled:opacity-70"
+                  className="group/btn relative isolate mt-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-paper shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_-4px_var(--blood-bright)] disabled:cursor-not-allowed disabled:opacity-70"
+                  style={{ clipPath: btnClip }}
                 >
                   <span
                     aria-hidden
-                    className="absolute inset-0 bg-blood shadow-[0_0_30px_-8px_var(--blood)] transition-all duration-300 group-hover/btn:shadow-[0_0_40px_-6px_var(--blood)]"
+                    className="absolute inset-0 bg-gradient-to-r from-blood via-blood-bright to-blood shadow-[0_0_30px_-8px_var(--blood)] transition-all duration-300 group-hover/btn:shadow-[0_0_40px_-6px_var(--blood)]"
                     style={{ clipPath: btnClip }}
                   />
                   <span
-                    className="relative m-[2px] flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap bg-blood px-4 py-3 font-mono text-xs font-bold tracking-[0.15em] text-paper transition-colors duration-300 group-hover/btn:bg-blood-bright sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
+                    className="relative m-[2px] flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 px-4 py-3 font-mono text-xs font-bold tracking-[0.15em] text-paper backdrop-blur-sm transition-colors duration-300 group-hover/btn:from-white/[0.16] group-hover/btn:via-ink/85 group-hover/btn:to-blood/15 sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
                     style={{ clipPath: btnClip }}
                   >
                     <span
@@ -357,7 +358,7 @@ export function ContactSection() {
                       className="pointer-events-none absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover/btn:translate-x-[100%]"
                     />
                     {loading ? "TRANSMITTING..." : "TRANSMIT MESSAGE"}
-                    <ChevronsRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 sm:h-5 sm:w-5" />
+                    <ChevronsRight className="transmit-chevron h-4 w-4 sm:h-5 sm:w-5" />
                   </span>
                 </button>
               </form>

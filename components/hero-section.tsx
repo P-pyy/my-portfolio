@@ -86,6 +86,7 @@ export function HeroSection() {
 
   return (
     <section
+      id="home"
       ref={sectionRef}
       onMouseMove={handleMove}
       className="relative min-h-screen w-full overflow-hidden"
