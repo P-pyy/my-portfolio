@@ -226,15 +226,15 @@ export function HeroSection() {
             <a
               href="/Hiangan_Chrestine_Resume.pdf"
               download
-              className="group relative isolate flex min-w-0 flex-1 items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-sm font-semibold text-paper shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_30px_-4px_var(--blood-bright)] sm:flex-none"
+              className="mobile-cta-pulse mobile-cta-resume group relative isolate flex min-w-0 flex-1 items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-sm font-semibold text-paper drop-shadow-[0_0_18px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:drop-shadow-[0_0_30px_var(--blood-bright)] sm:flex-none"
               style={{ clipPath: actionClip }}
             >
               <span
                 aria-hidden
-                className="absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 backdrop-blur-sm transition-colors duration-300 group-hover:from-white/[0.16] group-hover:via-ink/85 group-hover:to-blood/15"
+                className="mobile-cta-surface absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 backdrop-blur-sm transition-colors duration-300 group-hover:from-white/[0.16] group-hover:via-ink/85 group-hover:to-blood/15"
                 style={{ clipPath: actionClip }}
               />
-              <span aria-hidden className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-[430%]" />
+              <span aria-hidden className="mobile-cta-shine absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-[430%]" />
               <span className="relative flex shrink-0 items-center justify-center gap-2 whitespace-nowrap px-3 py-3.5 sm:px-8">
                 <FileText className="h-4 w-4" />
                 <span>Resume</span>
@@ -242,15 +242,15 @@ export function HeroSection() {
             </a>
             <a
               href="#contact"
-              className="group relative isolate flex min-w-0 flex-1 items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-sm font-semibold text-blood shadow-[0_0_18px_-8px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:shadow-[0_0_30px_-4px_var(--blood-bright)] sm:flex-none"
+              className="mobile-cta-pulse mobile-cta-contact mobile-cta-contact-hero group relative isolate flex min-w-0 flex-1 items-center justify-center gap-2 overflow-hidden bg-gradient-to-r from-blood via-blood-bright to-blood p-[2px] text-sm font-semibold text-blood drop-shadow-[0_0_18px_var(--blood)] transition-all duration-300 hover:-translate-y-0.5 hover:text-paper hover:drop-shadow-[0_0_30px_-4px_var(--blood-bright)] sm:flex-none"
               style={{ clipPath: actionClip }}
             >
               <span
                 aria-hidden
-                className="absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 backdrop-blur-sm transition-colors duration-300 group-hover:from-white/[0.16] group-hover:via-ink/75 group-hover:to-blood/25"
+                className="mobile-cta-surface absolute inset-[2px] bg-gradient-to-br from-white/[0.1] via-ink/95 to-ink/85 backdrop-blur-sm transition-colors duration-300 group-hover:from-white/[0.16] group-hover:via-ink/75 group-hover:to-blood/25"
                 style={{ clipPath: actionClip }}
               />
-              <span aria-hidden className="absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-[430%]" />
+              <span aria-hidden className="mobile-cta-shine absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-white/20 transition-transform duration-700 group-hover:translate-x-[430%]" />
               <span className="relative flex shrink-0 items-center justify-center gap-2 whitespace-nowrap px-3 py-3.5 sm:px-8">
                 <Mail className="h-4 w-4" />
                 Contact Me

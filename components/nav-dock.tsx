@@ -85,10 +85,10 @@ export function NavDock() {
   return (
     <nav
       aria-label="Primary"
-      className={`fixed z-50 transition-[top,left,right,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:left-1/2 lg:right-auto lg:top-4 lg:-translate-x-1/2 lg:-translate-y-0 lg:px-3 ${
+      className={`z-50 transition-[top,left,right,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:left-1/2 lg:right-auto lg:top-0 lg:-translate-x-1/2 lg:-translate-y-0 lg:px-3 ${
         isCompact
-          ? "left-auto top-1/2 -translate-x-0 -translate-y-1/2 px-0"
-          : "left-1/2 right-auto top-0 -translate-x-1/2 -translate-y-0 px-3"
+          ? "fixed left-auto top-1/2 -translate-x-0 -translate-y-1/2 px-0"
+          : "absolute left-1/2 right-auto top-0 -translate-x-1/2 -translate-y-0 px-3"
       }`}
       style={isCompact ? { right: "env(safe-area-inset-right)" } : undefined}
     >
@@ -112,7 +112,7 @@ export function NavDock() {
 
         {/* inner surface */}
         <div
-          className={`relative bg-ink lg:m-[2px] lg:px-3 lg:pb-2.5 lg:pt-5 ${
+          className={`relative bg-ink lg:m-[2px] lg:px-4 lg:pb-3 lg:pt-6 ${
             isCompact ? "m-0 bg-transparent p-0" : "m-[2px] px-3 pb-2.5 pt-5"
           }`}
           style={{ clipPath: isCompact ? "none" : frameClip }}
@@ -139,7 +139,7 @@ export function NavDock() {
 
           {/* icon cells */}
           <ul
-            className={`flex items-center lg:flex-row lg:gap-2 ${
+            className={`flex items-center lg:flex-row lg:gap-3 ${
               isCompact ? "flex-col gap-1" : "flex-row gap-2"
             }`}
           >
@@ -162,7 +162,7 @@ export function NavDock() {
                       onClick={() => handleNavClick(id)}
                       aria-label={label}
                       aria-current={isActive ? "page" : undefined}
-                      className={`group relative flex items-center justify-center lg:h-14 lg:w-14 ${
+                      className={`group relative flex items-center justify-center lg:h-16 lg:w-16 ${
                         isCompact ? "h-11 w-11" : "h-14 w-14"
                       } ${isCompact ? "bg-ink/45 backdrop-blur-md" : ""}`}
                     >
@@ -187,7 +187,7 @@ export function NavDock() {
                       <span aria-hidden className="absolute left-0 top-1/2 h-px w-1.5 -translate-y-1/2 bg-blood" />
                       <span aria-hidden className="absolute right-0 top-1/2 h-px w-1.5 -translate-y-1/2 bg-blood" />
                       <Home
-                        className={`h-5 w-5 transition-all duration-300 group-hover:scale-110 ${
+                        className={`h-5 w-5 lg:h-6 lg:w-6 transition-all duration-300 group-hover:scale-110 ${
                           isActive ? "text-blood drop-shadow-[0_0_6px_var(--blood)]" : "text-paper"
                         }`}
                       />
@@ -210,7 +210,7 @@ export function NavDock() {
                     onClick={() => handleNavClick(id)}
                     aria-label={label}
                     aria-current={isActive ? "page" : undefined}
-                    className={`group relative flex items-center justify-center transition-transform duration-200 lg:h-12 lg:w-14 ${
+                    className={`group relative flex items-center justify-center transition-transform duration-200 lg:h-14 lg:w-16 ${
                       isCompact ? "h-10 w-11" : "h-12 w-14"
                     }`}
                   >
@@ -240,7 +240,7 @@ export function NavDock() {
                       ))}
                     </span>
                     <Icon
-                      className={`h-5 w-5 transition-all duration-300 group-hover:scale-110 ${
+                      className={`h-5 w-5 lg:h-6 lg:w-6 transition-all duration-300 group-hover:scale-110 ${
                         isActive
                           ? "text-blood drop-shadow-[0_0_6px_var(--blood)]"
                           : "text-paper group-hover:text-paper"
