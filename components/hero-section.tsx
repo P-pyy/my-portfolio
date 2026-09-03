@@ -6,7 +6,7 @@ import { NavDock } from "@/components/nav-dock"
 import { ProfilePortrait } from "@/components/profile-portrait"
 import { SocialLinks } from "@/components/social-links"
 
-const ROLES = ["Computer Engineering", "Full Stack Developer"]
+const ROLES = ["Computer Engineer", "Full Stack Developer"]
 
 const roleClip =
   "polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px)"
@@ -178,7 +178,7 @@ export function HeroSection() {
               >
                 <span className="text-blood">{"~/role"}</span>
                 <span className="text-paper-faint">:</span>
-                <span className="font-semibold text-paper">{typed}</span>
+                <span className="font-semibold text-paper whitespace-nowrap sm:whitespace-normal">{typed}</span>
                 <span
                   className="inline-block h-6 w-[3px] bg-blood sm:h-7"
                   style={{ animation: "hero-blink 1s step-end infinite" }}
@@ -205,13 +205,13 @@ export function HeroSection() {
 
           {/* buttons */}
           <div
-            className="hero-rise mt-8 flex flex-wrap items-center gap-4"
+            className="hero-rise mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto"
             style={{ animationDelay: "0.62s" }}
           >
             <a
               href="/Hiangan_Chrestine_Resume.pdf"
               download
-              className="group relative flex items-center gap-2 overflow-hidden rounded-full border border-white/15 bg-ink-soft px-8 py-3.5 text-sm font-semibold text-paper transition-transform duration-300 hover:-translate-y-0.5"
+              className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-full border border-white/15 bg-ink-soft px-8 py-3.5 text-sm font-semibold text-paper transition-transform duration-300 hover:-translate-y-0.5 sm:w-auto"
             >
               <span className="absolute inset-0 -translate-x-full bg-blood/15 transition-transform duration-500 group-hover:translate-x-0" />
               <FileText className="relative h-4 w-4" />
@@ -219,7 +219,7 @@ export function HeroSection() {
             </a>
             <a
               href="#contact"
-              className="group flex items-center gap-2 rounded-full border border-blood px-8 py-3.5 text-sm font-semibold text-blood transition-all duration-300 hover:-translate-y-0.5 hover:bg-blood hover:text-paper hover:shadow-[0_0_28px_-4px_var(--blood)]"
+              className="group flex w-full items-center justify-center gap-2 rounded-full border border-blood px-8 py-3.5 text-sm font-semibold text-blood transition-all duration-300 hover:-translate-y-0.5 hover:bg-blood hover:text-paper hover:shadow-[0_0_28px_-4px_var(--blood)] sm:w-auto"
             >
               <Mail className="h-4 w-4" />
               Contact Me
@@ -246,7 +246,7 @@ export function HeroSection() {
 
       {/* tech-tag marquee ticker along the bottom */}
       <div className="absolute bottom-0 left-0 z-20 flex w-full items-center overflow-hidden border-t border-white/10 bg-black/50 py-3 backdrop-blur-sm">
-        <span className="relative z-10 hidden shrink-0 items-center gap-2 border-r border-blood/30 bg-ink px-5 font-mono text-xs font-semibold tracking-[0.3em] text-blood sm:flex">
+          <span className="relative z-10 hidden shrink-0 items-center gap-2 border-r border-blood/30 bg-ink px-5 font-mono text-xs font-semibold tracking-[0.3em] text-blood sm:flex">
           <span className="h-1.5 w-1.5 rotate-45 bg-blood" />
           TECH.STACK
         </span>

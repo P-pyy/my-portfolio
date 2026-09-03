@@ -42,14 +42,31 @@ export function ProjectCard({
     EXPRESS: "/images/expressjs.svg",
     SB: "/images/supabase.svg",
     TS: "/images/typescript.svg",
+    // lowercase / spaced variants used in project tags
+    typescript: "/images/typescript.svg",
+    "react js": "/images/react.svg",
+    react: "/images/react.svg",
+    REACT: "/images/react.svg",
+    "next js": "/images/nextjs.svg",
+    next: "/images/nextjs.svg",
+    NEXT: "/images/nextjs.svg",
+    "tailwind css": "/images/tailwind.svg",
+    tailwind: "/images/tailwind.svg",
   }
 
   return (
     <article className="group relative">
+      {/* solid clipped border overlay so every card shows a consistent red outline */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none z-40"
+        style={{ clipPath: cardClip, border: "2px solid var(--blood)" }}
+      />
       {/* ambient outer glow (not clipped) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-1 rounded-xl bg-blood/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-1 rounded-xl bg-blood/16 opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-100"
+        style={{ transform: 'translateZ(0)' }}
       />
 
       {/* glowing red frame border */}
@@ -63,6 +80,20 @@ export function ProjectCard({
         className="relative m-[2px] bg-ink p-5"
         style={{ clipPath: cardClip }}
       >
+        {project.id === "personal-portfolio" && (
+          <>
+            <span
+              aria-hidden
+              className="absolute z-20 block"
+              style={{ left: "22px", right: "22px", top: 0, height: "2px", background: "var(--blood)" }}
+            />
+            <span
+              aria-hidden
+              className="absolute z-20 block"
+              style={{ left: "22px", right: "22px", bottom: 0, height: "2px", background: "var(--blood)" }}
+            />
+          </>
+        )}
         {/* header row: // PROJECT label + index */}
         <div className="mb-4 flex items-center justify-between">
           <span className="font-mono text-xs font-semibold tracking-[0.3em]">
@@ -77,7 +108,11 @@ export function ProjectCard({
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-[1fr_1.05fr]">
           {/* LEFT: title + description + tech */}
           <div className="flex flex-col">
-            <h3 className="font-mono text-2xl font-bold leading-tight text-paper">
+            <h3
+              className={`font-mono text-2xl font-bold leading-tight text-paper ${
+                project.id === "personal-portfolio" ? "whitespace-nowrap overflow-hidden" : ""
+              }`}
+            >
               {project.title}
             </h3>
             <p className="mt-3 flex-1 text-sm leading-relaxed text-paper-dim">

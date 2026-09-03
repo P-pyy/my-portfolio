@@ -44,6 +44,16 @@ export function ProjectModal({
     EXPRESS: "/images/expressjs.svg",
     SB: "/images/supabase.svg",
     TS: "/images/typescript.svg",
+    // lowercase / spaced variants used in project tags
+    typescript: "/images/typescript.svg",
+    "react js": "/images/react.svg",
+    react: "/images/react.svg",
+    REACT: "/images/react.svg",
+    "next js": "/images/nextjs.svg",
+    next: "/images/nextjs.svg",
+    NEXT: "/images/nextjs.svg",
+    "tailwind css": "/images/tailwind.svg",
+    tailwind: "/images/tailwind.svg",
     HS: "/images/heidisql.png",
   }
   const [slide, setSlide] = useState(0)
@@ -93,7 +103,7 @@ export function ProjectModal({
       <button
         aria-label="Close dialog"
         onClick={onClose}
-        className="absolute inset-0 h-full w-full cursor-default bg-ink/85 backdrop-blur-sm"
+        className="absolute inset-0 h-full w-full cursor-default bg-ink/85"
       />
 
       {/* frame wrapper (carries the margin decorations) */}
@@ -139,6 +149,8 @@ export function ProjectModal({
               className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-blood/20 to-transparent"
             />
 
+            
+
             {/* header row */}
             <div className="relative flex items-start justify-between gap-4">
               <div className="min-w-0">
@@ -149,7 +161,11 @@ export function ProjectModal({
                     PROJECT {project.index}
                   </span>
                 </div>
-                <h3 className="font-mono text-3xl font-black leading-tight text-paper sm:text-4xl">
+                <h3
+                  className={`font-mono text-3xl font-black leading-tight text-paper sm:text-4xl ${
+                    project.id === "personal-portfolio" ? "whitespace-nowrap overflow-hidden" : ""
+                  }`}
+                >
                   {project.title}
                 </h3>
                 <p className="mt-3 max-w-2xl font-mono text-sm leading-relaxed text-paper-dim">

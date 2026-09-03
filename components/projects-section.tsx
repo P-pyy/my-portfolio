@@ -76,6 +76,24 @@ const PROJECTS: Project[] = [
     github: "https://github.com/loudevra/dpcbits",
     index: "04",
   },
+  {
+    id: "personal-portfolio",
+    title: "Personal Portfolio",
+    description:
+      "My personal portfolio showcasing my projects and skills.",
+    image: "/images/dpc_system1.jpeg",
+    gallery: [
+      "/images/dpc_system1.jpeg",
+      "/images/dpc_system2.jpeg",
+      "/images/dpc_system3.png",
+    ],
+    categories: ["Websites"],
+    tags: ["TS", "react js", "NEXT", "tailwind css"],
+    live: "https://hiangan-portfolio.vercel.app/",
+    github: "https://github.com/P-pyy/my-portfolio",
+    index: "05",
+  },
+  
 ]
 
 const FILTERS = ["All", "Websites", "Web Apps", "Other"]
@@ -100,7 +118,8 @@ export function ProjectsSection() {
       {/* ambient red glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-blood/10 blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-blood/8 blur-3xl"
+        style={{ transform: 'translateZ(0)' }}
       />
       {/* giant faint watermark word */}
       <span
@@ -207,9 +226,20 @@ export function ProjectsSection() {
 
         {/* project grid */}
         <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {visible.map((project) => (
-            <ProjectCard key={project.id} project={project} onView={setActive} />
-          ))}
+          {visible.map((project, i) => {
+            const isLastSingle = visible.length % 2 === 1 && i === visible.length - 1
+            if (isLastSingle) {
+              return (
+                <div key={project.id} className="lg:col-span-2 flex justify-center">
+                  <div className="w-full max-w-[676px]">
+                    <ProjectCard project={project} onView={setActive} />
+                  </div>
+                </div>
+              )
+            }
+
+            return <ProjectCard key={project.id} project={project} onView={setActive} />
+          })}
         </div>
 
         {/* more coming soon */}

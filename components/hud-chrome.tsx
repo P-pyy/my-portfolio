@@ -20,7 +20,7 @@ export function HeartbeatLine() {
 
 export function SystemStatus() {
   return (
-    <div className="absolute left-6 top-8 z-20 hidden w-44 border border-blood/40 bg-ink/60 p-3 backdrop-blur-sm lg:block">
+    <div className="absolute left-6 top-8 z-20 hidden w-44 border border-blood/40 bg-ink/70 p-3 lg:block">
       <span className="font-mono text-[10px] tracking-[0.25em] text-paper-dim">SYSTEM STATUS</span>
       <div className="mt-1 flex items-center gap-2">
         <span className="h-2 w-2 rounded-full bg-blood" style={{ animation: "hero-blink 1.4s steps(1) infinite" }} />
@@ -35,7 +35,7 @@ export function SystemStatus() {
 
 export function DataStream({ label = "ACTIVE" }: { label?: string }) {
   return (
-    <div className="absolute right-6 top-8 z-20 hidden w-44 border border-blood/40 bg-ink/60 p-3 backdrop-blur-sm lg:block">
+    <div className="absolute right-6 top-8 z-20 hidden w-44 border border-blood/40 bg-ink/70 p-3 lg:block">
       <div className="font-mono text-[10px] tracking-[0.25em] text-paper-dim">DATA STREAM</div>
       <div className="mt-1 font-mono text-xs font-bold tracking-widest text-blood">{label}</div>
       <div className="mt-2 flex gap-1">
@@ -56,7 +56,7 @@ export function DataStream({ label = "ACTIVE" }: { label?: string }) {
 
 export function Coordinates() {
   return (
-    <div className="absolute bottom-8 left-6 z-20 hidden border border-blood/40 bg-ink/60 px-3 py-2 backdrop-blur-sm lg:block">
+    <div className="absolute bottom-8 left-6 z-20 hidden border border-blood/40 bg-ink/70 px-3 py-2 lg:block">
       <div className="mb-1 font-mono text-[10px] tracking-[0.25em] text-paper-dim">COORDINATES</div>
       <div className="space-y-0.5 font-mono text-[11px] text-blood">
         <div>X: 1287.33</div>
@@ -88,7 +88,7 @@ export function Telemetry() {
   }, [])
 
   return (
-    <div className="absolute bottom-8 right-6 z-20 hidden border border-blood/40 bg-ink/60 px-3 py-2 backdrop-blur-sm lg:block">
+    <div className="absolute bottom-8 right-6 z-20 hidden border border-blood/40 bg-ink/70 px-3 py-2 lg:block">
       <div className="space-y-0.5 font-mono text-[11px] text-blood">
         <div>TIME: {time}</div>
         <div>DATE: {date}</div>

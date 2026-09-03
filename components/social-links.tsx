@@ -73,7 +73,7 @@ export function SocialLinks({ orientation = "horizontal" }: Props) {
                 className="absolute inset-[1.5px] bg-ink-soft transition-colors duration-300 group-hover:bg-blood/15"
                 style={{ clipPath: hexClip }}
               />
-              <Icon className="relative h-5 w-5 text-white transition-all duration-300 group-hover:scale-110 group-hover:text-blood" />
+              <Icon className="relative h-5 w-5 text-white transition-all duration-300 group-hover:scale-110 group-hover:text-paper" />
             </a>
           </li>
         ))}
