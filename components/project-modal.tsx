@@ -43,7 +43,10 @@ export function ProjectModal({
     EXP: "/images/expressjs.svg",
     EXPRESS: "/images/expressjs.svg",
     SB: "/images/supabase.svg",
+    Supabase: "/images/supabase.svg",
     TS: "/images/typescript.svg",
+    TypeScript: "/images/typescript.svg",
+    Vite: "/images/vite.svg",
     // lowercase / spaced variants used in project tags
     typescript: "/images/typescript.svg",
     "react js": "/images/react.svg",
@@ -52,6 +55,7 @@ export function ProjectModal({
     "next js": "/images/nextjs.svg",
     next: "/images/nextjs.svg",
     NEXT: "/images/nextjs.svg",
+    Tailwind: "/images/tailwind.svg",
     "tailwind css": "/images/tailwind.svg",
     tailwind: "/images/tailwind.svg",
     HS: "/images/heidisql.png",
@@ -152,7 +156,7 @@ export function ProjectModal({
 
             {/* header row */}
             <div className="relative flex items-start justify-between gap-0 sm:gap-4">
-              <div className="min-w-0 flex-1 sm:flex-none">
+              <div className="min-w-0 flex-1">
                 {/* eyebrow */}
                 <div className="mb-3 flex items-center gap-2">
                   <span className="h-1.5 w-7 rounded-full bg-blood" />

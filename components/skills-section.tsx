@@ -23,7 +23,7 @@ const CATEGORIES: Category[] = [
     code: ">_.01",
     level: "SYS.LVL A",
     title: "Frontend",
-    description: "Building the visual and interactive experiences users love.",
+    description: "The languages and libraries I use to build the interface.",
     icon: <Code2 className="h-6 w-6" />,
     skills: [
       { name: "HTML5", icon: "/images/html.svg", label: "MARKUP" },
@@ -41,7 +41,7 @@ const CATEGORIES: Category[] = [
     code: ">_.02",
     level: "SYS.LVL B",
     title: "Backend",
-    description: "Powering the logic, database, and server-side functionalities.",
+    description: "The server-side tools and databases I've used in my projects.",
     icon: <Database className="h-6 w-6" />,
     skills: [
       { name: "Node.js", icon: "/images/nodejs.svg", label: "RUNTIME" },
@@ -58,12 +58,13 @@ const CATEGORIES: Category[] = [
     code: ">_.03",
     level: "SYS.LVL C",
     title: "Tools & Technologies",
-    description: "Tools and platforms that enhance productivity and development.",
+    description: "The tools I use to design, version, build, and deploy projects.",
     icon: <Zap className="h-6 w-6" />,
     skills: [
       { name: "Git", icon: "/images/git.svg", label: "VERSION CONTROL" },
       { name: "GitHub", icon: "/images/github.svg", label: "REPOSITORY" },
       { name: "Figma", icon: "/images/figma.svg", label: "UI/UX DESIGN" },
+      { name: "Vite", icon: "/images/vite.svg", label: "BUILD TOOL" },
       { name: "VS Code", icon: "/images/vscode.svg", label: "CODE EDITOR" },
       { name: "Vercel", icon: "/images/vercel.svg", label: "DEPLOYMENT" },
       { name: "npm", icon: "/images/npm.svg", label: "PACKAGE MANAGER" },
@@ -73,7 +74,7 @@ const CATEGORIES: Category[] = [
 
 const titleClip =
   "polygon(38px 0, calc(100% - 38px) 0, 100% 50%, calc(100% - 38px) 100%, 38px 100%, 0 50%)"
-const SKILLS_CAPTION = "The tools and technologies I use to bring ideas to life."
+const SKILLS_CAPTION = "Tools I've used across my projects."
 
 /* angular frame: cut top-left + bottom-right corners */
 const panelClip =

@@ -8,10 +8,34 @@ import { HudChrome } from "@/components/hud-chrome"
 
 const PROJECTS: Project[] = [
   {
+    id: "scheduly",
+    title: "Scheduly",
+    description:
+      "A scheduling app for service businesses, with appointment booking, client discovery, and tools for managing daily work.",
+    image: "/images/scheduly1.png",
+    gallery: [
+      "/images/scheduly1.png",
+      "/images/scheduly2.png",
+      "/images/scheduly3.png",
+      "/images/scheduly4.png",
+      "/images/scheduly5.png",
+      "/images/scheduly6.png",
+      "/images/scheduly7.png",
+      "/images/scheduly8.png",
+      "/images/scheduly9.png",
+      "/images/scheduly10.png",
+    ],
+    categories: ["Web Apps"],
+    tags: ["React", "TypeScript", "Tailwind", "Vite", "Supabase"],
+    live: "https://schedulyy.vercel.app/",
+    github: "https://github.com/P-pyy/scheduly",
+    index: "01",
+  },
+  {
     id: "reigi-kiosk",
     title: "Reigi Kiosk",
     description:
-      "A kiosk application that manages student queues for URS registrar services and transactions.",
+      "A kiosk app for managing student queues at URS registrar services.",
     image: "/images/reigi_kiosk1.png",
     gallery: [
       "/images/reigi_kiosk1.png",
@@ -24,13 +48,13 @@ const PROJECTS: Project[] = [
     tags: ["JS", "Node", "EXP", "SB"],
     live: "https://reigi.vercel.app/kiosk/",
     github: "https://github.com/P-pyy/REIGI",
-    index: "01",
+    index: "02",
   },
   {
     id: "reigi",
     title: "Reigi",
     description:
-      "A website that provides assistant to URS students regarding registrar-related student problems.",
+      "A website that helps URS students find answers to common registrar-related questions.",
     image: "/images/reigi_website1.png",
     gallery: ["/images/reigi_website1.png", "/images/reigi_website2.png"],
     categories: ["Websites"],
@@ -43,7 +67,7 @@ const PROJECTS: Project[] = [
     id: "dream-pc",
     title: "Dream PC Build & IT Solutions",
     description:
-      "A technology solutions website that offers custom PC builds, IT services, and technical support.",
+      "A company website for Dream PC Build & IT Solutions, covering custom PC builds and IT services.",
     image: "/images/dpc_website1.png",
     gallery: [
       "/images/dpc_website1.png",
@@ -62,7 +86,7 @@ const PROJECTS: Project[] = [
     id: "dpc-system",
     title: "DPC Management System",
     description:
-      "A management system for tracking and organizing daily business operations.",
+      "A management system for the day-to-day work at Dream PC Build & IT Solutions.",
     image: "/images/dpc_system1.jpeg",
     gallery: [
       "/images/dpc_system1.jpeg",
@@ -81,7 +105,7 @@ const PROJECTS: Project[] = [
     id: "personal-portfolio",
     title: "Personal Portfolio",
     description:
-      "My personal portfolio showcasing my creative projects and technical skills.",
+      "This portfolio site, with a selection of my projects, tools, and contact details.",
     image: "/images/portfolio1.png",
     gallery: [
       "/images/portfolio1.png",
@@ -99,7 +123,7 @@ const PROJECTS: Project[] = [
 ]
 
 const FILTERS = ["All", "Websites", "Web Apps", "Other"]
-const PROJECTS_CAPTION = "A collection of websites and apps I've built with passion."
+const PROJECTS_CAPTION = "Some of the websites and apps I've worked on."
 
 const titleClip =
   "polygon(38px 0, calc(100% - 38px) 0, 100% 50%, calc(100% - 38px) 100%, 38px 100%, 0 50%)"

@@ -9,13 +9,13 @@ const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrai
 export const metadata: Metadata = {
   title: 'Chrestine Hiangan | Full Stack Developer',
   description:
-    'Full Stack Developer based in Teresa, Rizal, Philippines. I love building colorful, fun, and interactive web experiences.',
+    'Portfolio of Chrestine Hiangan featuring web apps, websites, and tools from my projects.',
   openGraph: {
     title: 'Chrestine Hiangan | Full Stack Developer',
-    description: 'Full Stack Developer creating colorful, thoughtful, and interactive web experiences.',
+    description: 'Portfolio of Chrestine Hiangan featuring web apps, websites, and tools from my projects.',
     type: 'website',
   },
-  twitter: { card: 'summary', title: 'Chrestine Hiangan | Full Stack Developer', description: 'Full Stack Developer creating colorful, thoughtful, and interactive web experiences.' },
+  twitter: { card: 'summary', title: 'Chrestine Hiangan | Full Stack Developer', description: 'Portfolio of Chrestine Hiangan featuring web apps, websites, and tools from my projects.' },
   icons: {
     icon: [
       {

@@ -25,7 +25,10 @@ const TAG_ICONS: Record<string, string> = {
   EXP: "/images/expressjs.svg",
   EXPRESS: "/images/expressjs.svg",
   SB: "/images/supabase.svg",
+  Supabase: "/images/supabase.svg",
   TS: "/images/typescript.svg",
+  TypeScript: "/images/typescript.svg",
+  Vite: "/images/vite.svg",
   typescript: "/images/typescript.svg",
   "react js": "/images/react.svg",
   react: "/images/react.svg",
@@ -33,6 +36,7 @@ const TAG_ICONS: Record<string, string> = {
   "next js": "/images/nextjs.svg",
   next: "/images/nextjs.svg",
   NEXT: "/images/nextjs.svg",
+  Tailwind: "/images/tailwind.svg",
   "tailwind css": "/images/tailwind.svg",
   tailwind: "/images/tailwind.svg",
 }
