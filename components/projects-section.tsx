@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
     id: "reigi-kiosk",
     title: "Reigi Kiosk",
     description:
-      "A kiosk app for managing student queues at URS registrar services.",
+      "A kiosk application that manages student queues for URS registrar services and transactions.",
     image: "/images/reigi_kiosk1.png",
     gallery: [
       "/images/reigi_kiosk1.png",
@@ -54,7 +54,7 @@ const PROJECTS: Project[] = [
     id: "reigi",
     title: "Reigi",
     description:
-      "A website that helps URS students find answers to common registrar-related questions.",
+      "A website that provides assistant to URS students regarding registrar-related student problems.",
     image: "/images/reigi_website1.png",
     gallery: ["/images/reigi_website1.png", "/images/reigi_website2.png"],
     categories: ["Websites"],
@@ -86,7 +86,7 @@ const PROJECTS: Project[] = [
     id: "dpc-system",
     title: "DPC Management System",
     description:
-      "A management system for the day-to-day work at Dream PC Build & IT Solutions.",
+      "A management system for tracking and organizing the day-to-day work at Dream PC Build & IT Solutions.",
     image: "/images/dpc_system1.jpeg",
     gallery: [
       "/images/dpc_system1.jpeg",

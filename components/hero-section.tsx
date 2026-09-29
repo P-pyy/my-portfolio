@@ -210,7 +210,7 @@ export function HeroSection() {
             className="hero-rise mt-6 max-w-lg text-pretty leading-relaxed text-paper-dim"
             style={{ animationDelay: "0.54s" }}
           >
-            I build web apps and websites, and enjoy working through the details that make them easy to use.
+            I love building colorful, fun, and interactive web experiences using programming languages, modern technologies, and my imagination.
           </p>
 
           {/* buttons */}
