@@ -41,8 +41,30 @@ type ProjectEntry = {
 
 const PROJECT_INDEX: ProjectEntry[] = [
   {
-    id: "reigi-kiosk",
+    id: "daymark",
     index: "01",
+    title: "Daymark",
+    description:
+      "A personal productivity app for managing daily tasks, schedules, priorities, and reminders.",
+    image: "/images/daymark1.png",
+    tags: ["React", "TypeScript", "Vite", "Supabase"],
+    live: "https://daymarkk.vercel.app/",
+    github: "https://github.com/P-pyy/daymark",
+  },
+  {
+    id: "scheduly",
+    index: "02",
+    title: "Scheduly",
+    description:
+      "A scheduling app for service businesses, with appointment booking, client discovery, and tools for managing daily work.",
+    image: "/images/scheduly1.png",
+    tags: ["React", "TypeScript", "Tailwind", "Vite", "Supabase"],
+    live: "https://schedulyy.vercel.app/",
+    github: "https://github.com/P-pyy/scheduly",
+  },
+  {
+    id: "reigi-kiosk",
+    index: "03",
     title: "Reigi Kiosk",
     description: "Kiosk app managing student queues for URS registrar services.",
     image: "/images/reigi_kiosk1.png",
@@ -52,7 +74,7 @@ const PROJECT_INDEX: ProjectEntry[] = [
   },
   {
     id: "reigi",
-    index: "02",
+    index: "04",
     title: "Reigi",
     description: "Website assisting URS students with registrar-related problems.",
     image: "/images/reigi_website1.png",
@@ -62,7 +84,7 @@ const PROJECT_INDEX: ProjectEntry[] = [
   },
   {
     id: "dream-pc",
-    index: "03",
+    index: "05",
     title: "Dream PC Build & IT Solutions",
     description: "Tech solutions site for custom PC builds and IT services.",
     image: "/images/dpc_website1.png",
@@ -72,7 +94,7 @@ const PROJECT_INDEX: ProjectEntry[] = [
   },
   {
     id: "dpc-system",
-    index: "04",
+    index: "06",
     title: "DPC Management System",
     description: "Management system for daily business operations.",
     image: "/images/dpc_system1.jpeg",
@@ -81,7 +103,7 @@ const PROJECT_INDEX: ProjectEntry[] = [
   },
   {
     id: "personal-portfolio",
-    index: "05",
+    index: "07",
     title: "Personal Portfolio",
     description: "This site — a black & red HUD portfolio experience.",
     image: "/images/portfolio1.png",

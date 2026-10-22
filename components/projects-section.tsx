@@ -8,6 +8,25 @@ import { HudChrome } from "@/components/hud-chrome"
 
 const PROJECTS: Project[] = [
   {
+    id: "daymark",
+    title: "Daymark",
+    description:
+      "A personal productivity app for managing daily tasks, schedules, priorities, and reminders.",
+    image: "/images/daymark1.png",
+    gallery: [
+      "/images/daymark1.png",
+      "/images/daymark2.png",
+      "/images/daymark3.png",
+      "/images/daymark4.png",
+      "/images/daymark5.png",
+    ],
+    categories: ["Web Apps"],
+    tags: ["React", "TypeScript", "Vite", "Supabase"],
+    live: "https://daymarkk.vercel.app/",
+    github: "https://github.com/P-pyy/daymark",
+    index: "01",
+  },
+  {
     id: "scheduly",
     title: "Scheduly",
     description:
@@ -29,7 +48,7 @@ const PROJECTS: Project[] = [
     tags: ["React", "TypeScript", "Tailwind", "Vite", "Supabase"],
     live: "https://schedulyy.vercel.app/",
     github: "https://github.com/P-pyy/scheduly",
-    index: "01",
+    index: "02",
   },
   {
     id: "reigi-kiosk",
@@ -48,7 +67,7 @@ const PROJECTS: Project[] = [
     tags: ["JS", "Node", "EXP", "SB"],
     live: "https://reigi.vercel.app/kiosk/",
     github: "https://github.com/P-pyy/REIGI",
-    index: "02",
+    index: "03",
   },
   {
     id: "reigi",
@@ -61,7 +80,7 @@ const PROJECTS: Project[] = [
     tags: ["HTML", "CSS", "JS", "Node"],
     live: "https://reigi.vercel.app/",
     github: "https://github.com/P-pyy/REIGI",
-    index: "02",
+    index: "04",
   },
   {
     id: "dream-pc",
@@ -80,7 +99,7 @@ const PROJECTS: Project[] = [
     tags: ["HTML", "CSS", "BS", "JS"],
     live: "https://dreampcbuild.com/",
     github: "https://github.com/auxclark/dreampcbuildanditsolutionsinc",
-    index: "03",
+    index: "05",
   },
   {
     id: "dpc-system",
@@ -99,7 +118,7 @@ const PROJECTS: Project[] = [
     tags: ["VB", "C#", "HS"],
     live: "#",
     github: "https://github.com/loudevra/dpcbits",
-    index: "04",
+    index: "06",
   },
   {
     id: "personal-portfolio",
@@ -117,7 +136,7 @@ const PROJECTS: Project[] = [
     tags: ["TS", "react js", "NEXT", "tailwind css"],
     live: "https://hiangan-portfolio.vercel.app/",
     github: "https://github.com/P-pyy/my-portfolio",
-    index: "05",
+    index: "07",
   },
   
 ]
