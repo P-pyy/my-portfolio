@@ -49,7 +49,7 @@ export default function RootLayout({
     <html lang="en" className={`dark ${inter.variable} ${jetbrains.variable}`}>
       <body className="antialiased bg-ink text-paper font-sans">
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.VERCEL === '1' && <Analytics />}
       </body>
     </html>
   )

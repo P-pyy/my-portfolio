@@ -65,6 +65,7 @@ const CATEGORIES: Category[] = [
       { name: "GitHub", icon: "/images/github.svg", label: "REPOSITORY" },
       { name: "Figma", icon: "/images/figma.svg", label: "UI/UX DESIGN" },
       { name: "Vite", icon: "/images/vite.svg", label: "BUILD TOOL" },
+      { name: "Docker", icon: "/images/docker.svg", label: "CONTAINERIZATION" },
       { name: "VS Code", icon: "/images/vscode.svg", label: "CODE EDITOR" },
       { name: "Vercel", icon: "/images/vercel.svg", label: "DEPLOYMENT" },
       { name: "npm", icon: "/images/npm.svg", label: "PACKAGE MANAGER" },

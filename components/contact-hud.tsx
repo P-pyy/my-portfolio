@@ -66,8 +66,12 @@ function FrequencyBand() {
             key={i}
             className="w-[2px] origin-bottom bg-blood/70"
             style={{
-              height: `${20 + Math.abs(Math.sin(i * 1.7)) * 80}%`,
-              animation: `hud-eq ${1 + (i % 6) * 0.2}s ease-in-out ${i * 0.05}s infinite`,
+              height: `${Math.round(20 + Math.abs(Math.sin(i * 1.7)) * 80)}%`,
+              animationName: "hud-eq",
+              animationDuration: `${1 + (i % 6) * 0.2}s`,
+              animationTimingFunction: "ease-in-out",
+              animationDelay: `${i * 0.05}s`,
+              animationIterationCount: "infinite",
             }}
           />
         ))}

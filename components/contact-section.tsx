@@ -85,7 +85,7 @@ function HudField({
           <span aria-hidden className="absolute left-0 top-0 h-1.5 w-1.5 border-l border-t border-blood/70" />
           <span aria-hidden className="absolute bottom-0 right-0 h-1.5 w-1.5 border-b border-r border-blood/70" />
         </div>
-        <div className="flex-1">
+        <div className="min-w-0 flex-1">
           <div className="mb-0.5 flex items-center gap-1 font-mono text-[9px] font-bold tracking-[0.1em] text-blood sm:mb-1 sm:gap-2 sm:text-[11px] sm:tracking-[0.2em]">
             {label}
             <span className="h-1 w-1 rounded-full bg-blood" />
@@ -190,7 +190,7 @@ export function ContactSection() {
   }
 
   const inputClass =
-    "w-full bg-transparent font-mono text-xs text-paper placeholder:text-paper-faint focus:outline-none sm:text-base"
+    "block box-border w-full min-w-0 max-w-full bg-transparent font-mono text-xs text-paper placeholder:text-paper-faint focus:outline-none sm:text-base"
 
   return (
     <section id="contact" className="relative w-full overflow-hidden pb-20 pt-24">
@@ -210,7 +210,7 @@ export function ContactSection() {
       {/* peripheral HUD chrome — radar / uplink transmission theme */}
       <ContactHud />
 
-      <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-20">
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-20">
         <div
           ref={ref}
           className="group relative"
@@ -227,7 +227,7 @@ export function ContactSection() {
             style={{ clipPath: panelClip }}
           />
           <div
-            className="relative m-[2px] bg-ink px-6 py-10 sm:px-12 sm:py-12"
+            className="relative m-[2px] min-w-0 bg-ink px-4 py-8 sm:px-12 sm:py-12"
             style={{ clipPath: panelClip }}
           >
             {/* internal top readouts */}
@@ -254,7 +254,7 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="grid gap-10 pt-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:pt-10">
+            <div className="grid min-w-0 gap-10 pt-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:pt-10">
               {/* left: heading + mission text */}
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <div className="mb-3 flex items-center gap-3">
@@ -300,7 +300,7 @@ export function ContactSection() {
               </div>
 
               {/* right: form */}
-              <div className="relative">
+              <div className="relative min-w-0">
 
             {sent ? (
               <div className="contact-success flex flex-col items-center gap-4 py-10 text-center">

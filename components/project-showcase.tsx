@@ -185,7 +185,9 @@ export function ProjectShowcaseRow({
     <article
       ref={reveal.ref as React.RefObject<HTMLElement>}
       style={reveal.style}
-      className="group/row relative"
+      className={`group/row relative w-full max-sm:w-[92%] ${
+        flipped ? "max-sm:ml-auto" : ""
+      }`}
     >
       <div
         className={`grid items-center gap-6 lg:gap-10 ${

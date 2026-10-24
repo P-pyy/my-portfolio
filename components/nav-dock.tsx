@@ -31,47 +31,48 @@ export function NavDock() {
 
   // track the section currently in view
   useEffect(() => {
+    let frame = 0
+    let previousCompact = false
     const sections = items
       .filter((i) => i.id !== "home")
       .map((i) => document.getElementById(i.id))
       .filter((el): el is HTMLElement => Boolean(el))
 
-    const onScroll = () => {
-      if (window.scrollY < 200) {
-        setActive("home")
-        return
-      }
-      const mid = window.innerHeight / 2
+    const update = () => {
+      frame = 0
       let current = "home"
-      for (const el of sections) {
-        const rect = el.getBoundingClientRect()
-        if (rect.top <= mid) current = el.id
+      if (window.scrollY < 200) {
+        current = "home"
+      } else {
+        const mid = window.innerHeight / 2
+        for (const el of sections) {
+          const rect = el.getBoundingClientRect()
+          if (rect.top <= mid) current = el.id
+        }
       }
       setActive(current)
+      const compact = window.innerWidth < 1024 && current !== "home"
+      setIsCompact(compact)
+      if (compact !== previousCompact) {
+        setIsRailExpanded(!compact)
+        previousCompact = compact
+      }
     }
 
-    onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
-
-  useEffect(() => {
-    const updateCompactState = () => {
-      setIsCompact(window.innerWidth < 1024 && active !== "home")
+    const scheduleUpdate = () => {
+      if (frame) return
+      frame = window.requestAnimationFrame(update)
     }
 
-    updateCompactState()
-    window.addEventListener("scroll", updateCompactState, { passive: true })
-    window.addEventListener("resize", updateCompactState)
+    scheduleUpdate()
+    window.addEventListener("scroll", scheduleUpdate, { passive: true })
+    window.addEventListener("resize", scheduleUpdate)
     return () => {
-      window.removeEventListener("scroll", updateCompactState)
-      window.removeEventListener("resize", updateCompactState)
+      window.removeEventListener("scroll", scheduleUpdate)
+      window.removeEventListener("resize", scheduleUpdate)
+      if (frame) window.cancelAnimationFrame(frame)
     }
-  }, [active])
-
-  useEffect(() => {
-    setIsRailExpanded(!isCompact)
-  }, [isCompact])
+  }, [])
 
   function handleNavClick(id: string) {
     if (isCompact && !isRailExpanded) {
